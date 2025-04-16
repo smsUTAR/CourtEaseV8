@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BookingController;
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -17,3 +18,7 @@ Route::get('/court/{id}', function ($id) {
 Route::get('/', function () {
     return view('court-listing');
 })->name('court-listing');
+
+Route::get('/payment/{court}', [BookingController::class, 'showPayment'])
+->name('payment')
+->middleware('auth');
