@@ -22,3 +22,7 @@ Route::get('/', function () {
 Route::get('/payment/{court}', [BookingController::class, 'showPayment'])
 ->name('payment')
 ->middleware('auth');
+
+Route::get('/contact-us', function() {
+    return view('contact');
+})->name('contact');
