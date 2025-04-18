@@ -12,3 +12,6 @@ As of 16 April 2025,
 5. Created 2 new Models (Court and Booking)
 
 6. Created 2 new database migrations (make sure u migrate both by specifying the paths)
+
+As of 18 April 2025,
+1. Created contact.blade.php and route to contact us page.
