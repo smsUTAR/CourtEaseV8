@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Court extends Model
 {
-    protected $fillable = ['name', 'image', 'price'];
+    protected $fillable = ['name', 'image', 'price','status'];
 
     public function bookings()
     {

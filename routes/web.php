@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\CourtController;
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -22,3 +23,14 @@ Route::get('/', function () {
 Route::get('/payment/{court}', [BookingController::class, 'showPayment'])
 ->name('payment')
 ->middleware('auth');
+
+Route::get('/admin', function () {
+    return view('admin_panel');
+})->name('admin');
+
+Route::get('/admin-adjust-pricing', [CourtController::class, 'showChangePriceForm'])->name('courts.changePrice');
+Route::post('/admin-adjust-pricing', [CourtController::class, 'updateAllPrices'])->name('courts.updatePrice');
+
+
+Route::get('/admin-court', [CourtController::class,'showCourtName']);
+Route::post('/courts/update-status', [CourtController::class, 'updateStatus'])->name('courts.updateStatus');
