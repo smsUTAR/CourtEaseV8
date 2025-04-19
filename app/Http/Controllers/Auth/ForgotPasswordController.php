@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use App\Mail\ResetTokenMail;
 use Illuminate\Support\Facades\Hash;
-
+use App\Models\PasswordReset;
 
 class ForgotPasswordController extends Controller
 {
