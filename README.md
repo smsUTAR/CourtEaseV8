@@ -47,3 +47,10 @@ SESSION_COOKIE=courtease_session
 5. top right acc button (choose smtp and api)
 6. replace in env for mailhost(smtp server), mailport(port), mailusername(login), mailpassword(masterpassword), mailencrytion(tls)
 
+
+## Project setup
+1. need to remigrate the database, (because i have change some migration in it)
+2. To let the picture show in the view need to run php artisan storage:link.
+3. The way to let the picture store in the database, just save you picture inside CourtEaseV8\storage\app\public  and save the name to the database such as if you save picture as CourtEaseV8\storage\app\public\Court2.jpeg, the database image name should be Court2.jpeg
+4. Don't know you guys want to let admin have the ability to create new court or not?
+
