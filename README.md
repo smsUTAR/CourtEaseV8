@@ -30,13 +30,14 @@ As of 16 April 2025,
 11. add route
 12. update env session, adminSecretCode, eMail
 
-(to send email for user forgot pwd)
-->signup acc in https://login.brevo.com/
-->top right acc button (choose senders,dmain & dedicated ips)
-->add sender
-->replace in env for (mail from address)
-->top right acc button (choose smtp and api)
-->replace in env for mailhost(smtp server), mailport(port), mailusername(login), and mailpassword(masterpassword)
+## to send email for user forgot pwd
+1. signup acc in https://login.brevo.com/
+2. top right acc button (choose senders,dmain & dedicated ips)
+3. add sender
+4. replace in env for (mail from address)
+5. top right acc button (choose smtp and api)
+6. replace in env for mailhost(smtp server), mailport(port), mailusername(login), and mailpassword(masterpassword)
+
 =======
 As of 18 April 2025,
 1. Created contact.blade.php and route to contact us page.
