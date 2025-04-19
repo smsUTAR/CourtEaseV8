@@ -50,7 +50,7 @@
     </div>
 
     <footer class="mt-4">
-        <a href="#">Contact Us</a>
+        <a href="contact">Contact Us</a>
     </footer>
 </div>
 
