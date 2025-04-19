@@ -46,4 +46,9 @@ class User extends Authenticatable
     ];
 
     protected $rememberTokenName = 'remember_token';
+
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
 }

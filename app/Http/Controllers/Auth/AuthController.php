@@ -54,7 +54,11 @@ class AuthController extends Controller
         session(['welcome_message' => 'Welcome back, ' . $user->name]);
         session(['is_admin' => $user->is_admin]);
 
-        return redirect('/')->with('success', 'Logged in successfully!');
+        if ($user->is_admin) {
+            return redirect()->route('admin')->with('success', 'Admin logged in successfully!');
+        } else {
+            return redirect()->route('court-listing')->with('success', 'Logged in successfully!');
+        }
     }
 
     // Show Register View
@@ -99,7 +103,7 @@ class AuthController extends Controller
         Auth::login($user);
 
         //return redirect()->route('welcome')->with('success', 'Account created successfully!');
-        return redirect('/')->with('success', 'Account created successfully!');
+        return redirect('/login')->with('success', 'Account created successfully!');
     }
 
 

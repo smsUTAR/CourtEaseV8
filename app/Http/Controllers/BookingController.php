@@ -25,7 +25,7 @@ class BookingController extends Controller
             'court_id' => 'required|exists:courts,id',
             'payment_method' => 'required|in:credit_debit,e_wallet',
         ]);
-
+    
         // Create a booking
         $booking = Booking::create([
             'user_id' => Auth::id(),
@@ -33,16 +33,23 @@ class BookingController extends Controller
             'booking_date' => now(), // Or use a date picker from the form
             'payment_method' => $request->payment_method,
             'status' => 'confirmed',
+            'totalPrice' => $request->total,
+            'hours' => $request->hours,
         ]);
-
-        return redirect()->route('booking.confirmation', $booking);
+    
+        // Return the booking details to the confirmation page
+        return redirect()->route('booking-confirmation', ['booking' => $booking->id]);
     }
+    
 
-    // Show Booking Confirmation Page
     public function showConfirmation(Booking $booking)
     {
+        // Eager load the related Court and User
+        $booking->load('court', 'user');
+    
         return view('booking-confirmation', [
             'booking' => $booking,
         ]);
     }
+    
 }

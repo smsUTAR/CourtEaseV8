@@ -1,9 +1,3 @@
-@extends('layouts.app')
-
-@section('title', 'Contact Us')
-
-@section('content')
-
 <div class="container">
     <div class="header">
         <h1>Contact Us</h1>
@@ -24,7 +18,7 @@
             <a href="{{ route('contact') }}" class="btn btn-contact">Contact Us</a>
     </div>
 </div>
-@endsection
+
 
 <style>
     .header {

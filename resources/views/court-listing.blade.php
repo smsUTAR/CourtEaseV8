@@ -21,7 +21,7 @@
                     <a class="nav-link" href="{{ route('account') }}">Account</a>
                 </li>
                 <li class="nav-item">
-                <form method="POST" action="{{ route('logout') }}" class="d-inline">
+                <form method="POST" action="{{ route('logout') }}" onsubmit="return confirm('Are you sure you want to logout?')" class="d-inline">
                     @csrf
                     <input type="hidden" name="is_admin" value="{{ session('is_admin') ? 1 : 0 }}">
                     <button type="submit" class="btn btn-danger">Logout</button>
@@ -36,24 +36,71 @@
     <h2>Court Listing</h2>
 
     <div class="row">
-        @foreach(range(1, 6) as $court)
-        <div class="col-md-4">
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">Court {{ $court }}</h5>
-                    <a href="{{ route('court-details', ['id' => $court]) }}" class="btn btn-primary">View Details</a>
-                </div>
+    @forelse($availableCourts as $court)
+    <div class="col-md-4">
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ $court->name }}</h5>
+                <a href="{{ route('court-details', ['id' => $court->id]) }}" class="btn btn-primary">View Details</a>
             </div>
         </div>
-        @endforeach
+    </div>
+    @empty
+        <p>No available courts at the moment.</p>
+    @endforelse
     </div>
 
-    <h3>Booked court: <span id="booked-court">None</span></h3>
+    <h3 class="mt-5">Your Bookings</h3>
+
+    @if($userBookings->isEmpty())
+        <p>You have no bookings yet.</p>
+    @else
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Court Name</th>
+                        <th>Date</th>
+                        <th>Hours</th>
+                        <th>Total Price (RM)</th>
+                        <th>Payment Method</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($userBookings as $booking)
+                        <tr>
+                            <td>{{ $booking->court->name }}</td>
+                            <td>{{ $booking->booking_date }}</td>
+                            <td>{{ $booking->hours }}</td>
+                            <td>{{ number_format($booking->totalPrice, 2) }}</td>
+                            <td>{{ ucfirst(str_replace('_', ' ', $booking->payment_method)) }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    @endif
 
     <footer class="mt-4">
-        <a href="#">Contact Us</a>
+    <a href="{{ route('contact') }}">Contact Us</a>
     </footer>
 </div>
+
+@if(session('error'))
+    <div class="alert alert-danger" id="error-alert">
+        {{ session('error') }}
+    </div>
+
+    <script>
+        // Hide the error alert after 5 seconds (5000ms)
+        setTimeout(function() {
+            let alert = document.getElementById('error-alert');
+            if (alert) {
+                alert.style.display = 'none';
+            }
+        }, 5000);
+    </script>
+@endif
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

@@ -20,7 +20,11 @@
                     <a class="nav-link" href="{{ route('account') }}">Account</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('welcome') }}">Logout</a>
+                <form method="POST" action="{{ route('logout') }}" onsubmit="return confirm('Are you sure you want to logout?')" class="d-inline">
+                    @csrf
+                    <input type="hidden" name="is_admin" value="{{ session('is_admin') ? 1 : 0 }}">
+                    <button type="submit" class="btn btn-danger">Logout</button>
+                </form>
                 </li>
             </ul>
         </div>
@@ -28,26 +32,34 @@
 </nav>
 
 <div class="container mt-4">
-    <h1>Court {{ $id }}</h1>
+    <h1>Court {{ $court->id }}</h1>
     <h2>Court Details</h2>
 
     <div class="card">
-        <div class="card-body">
-            <img src="https://via.placeholder.com/400x200" alt="Court Image" class="img-fluid">
-            <p><strong>Status:</strong> <span>Available / Not available</span></p>
-            
+    <div class="card-body">
+        <img src="{{ asset('storage/' . $court->image) }}" alt="Court Image" class="img-fluid mb-3" style="max-height: 300px; object-fit: cover;">
+        <p><strong>Status:</strong> {{ $court->status }}</p>
+
+        <form id="rentForm" method="POST" action="{{ route('payment') }}">
+            @csrf
+            <input type="hidden" name="court_id" value="{{ $court->id }}">
+            <input type="hidden" name="date" id="hidden_date">
+            <input type="hidden" name="hours" id="hidden_hours">
+            <input type="hidden" name="total" id="hidden_total">
+
             <label for="date">Date:</label>
-            <input type="date" id="date" class="form-control mb-2">
-            
+            <input type="date" id="date" class="form-control mb-2" required onchange="updateHiddenFields()">
+
             <label for="hours">Hours:</label>
-            <input type="number" id="hours" class="form-control mb-2" min="1" value="1" oninput="calculateTotal()">
-            
-            <p><strong>Price per hour:</strong> RM4</p>
-            <p><strong>Total:</strong> RM <span id="total">4</span></p>
-            
-            <button class="btn btn-success">Rent</button>
-        </div>
+            <input type="number" id="hours" class="form-control mb-2" min="1" value="1" required oninput="calculateTotal()">
+
+            <p><strong>Price per hour:</strong> RM{{ $court->price }}</p>
+            <p><strong>Total:</strong> RM <span id="total">{{ $court->price }}</span></p>
+
+            <button type="submit" class="btn btn-success">Rent</button>
+        </form>
     </div>
+</div>
 
     <footer class="mt-4">
         <a href="#">Contact Us</a>
@@ -55,12 +67,30 @@
 </div>
 
 <script>
-    function calculateTotal() {
-        let hours = document.getElementById('hours').value;
-        let pricePerHour = 4;
-        let total = hours * pricePerHour;
-        document.getElementById('total').innerText = total;
-    }
+function calculateTotal() {
+    let hours = document.getElementById('hours').value;
+    let pricePerHour = {{ $court->price }};
+    let total = hours * pricePerHour;
+
+    document.getElementById('total').innerText = total;
+
+    // Update hidden fields
+    document.getElementById('hidden_total').value = total;
+    document.getElementById('hidden_hours').value = hours;
+    document.getElementById('hidden_date').value = document.getElementById('date').value;
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById("date").setAttribute('min', today);
+
+    // Set initial values
+    calculateTotal();
+});
+
+document.getElementById('date').addEventListener('change', function () {
+    document.getElementById('hidden_date').value = this.value;
+});
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
