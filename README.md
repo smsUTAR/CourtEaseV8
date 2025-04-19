@@ -13,5 +13,31 @@ As of 16 April 2025,
 
 6. Created 2 new database migrations (make sure u migrate both by specifying the paths)
 
+<<<<<<< HEAD
+
+# jm done (user login, user register, admin login, admin register, account panel)
+
+1. add controller app/http/controllers/auth
+2. add app/mail
+3. modify user models app/models/user
+4. add validation app/traits
+5. add user data to database/migration
+6. add icon to public/icons
+7. add profile pic to public/images
+8. add view account
+9. add view auth
+10. add header recources/views/components
+11. add route
+12. update env session, adminSecretCode, eMail
+
+(to send email for user forgot pwd)
+->signup acc in https://login.brevo.com/
+->top right acc button (choose senders,dmain & dedicated ips)
+->add sender
+->replace in env for (mail from address)
+->top right acc button (choose smtp and api)
+->replace in env for mailhost(smtp server), mailport(port), mailusername(login), and mailpassword(masterpassword)
+=======
 As of 18 April 2025,
 1. Created contact.blade.php and route to contact us page.
+>>>>>>> master
