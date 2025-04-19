@@ -8,7 +8,7 @@
     <div class="header">
         <h1>Contact Us</h1>
         <div class="auth-links">
-            <a href="{{ route('home') }}">Home</a>
+            <a href="{{ route('court-listing') }}">Home</a>
             <a href="{{ route('account') }}">Account</a>
             <a href="{{ route('logout') }}">Log Out</a>
         </div>

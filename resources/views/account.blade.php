@@ -82,7 +82,7 @@
             <h4 class="text-white mb-4">CourtEase</h4>
             <ul class="nav flex-column">
                 <li class="nav-item mb-2">
-                    <a class="nav-link" href="{{ route('welcome') }}"><i class="bi bi-house-door me-2"></i>Home</a>
+                    <a class="nav-link" href="{{ route('court-listing') }}"><i class="bi bi-house-door me-2"></i>Home</a>
                 </li>
                 <li class="nav-item mb-2">
                     <a class="nav-link" href="{{ route('account') }}"><i class="bi bi-person-circle me-2"></i>Account</a>

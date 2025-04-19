@@ -10,11 +10,11 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="{{ route('welcome') }}">CourtEase</a>
+        <a class="navbar-brand" href="{{ route('court-listing') }}">CourtEase</a>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('welcome') }}">Home</a>
+                    <a class="nav-link" href="{{ route('court-listing') }}">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('account') }}">Account</a>
