@@ -51,3 +51,7 @@ Route::get('/account', [AuthController::class, 'showAccount'])->name('account')-
 Route::post('/account/update-password', [AuthController::class, 'updatePassword'])->name('account.updatePassword')->middleware('auth');
 
 Route::post('/account/update-profile', [AuthController::class, 'updateProfile'])->name('account.updateProfile');
+
+Route::get('contact', function() {
+    return view('contact');
+}->name('contact);
