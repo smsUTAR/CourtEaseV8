@@ -21,11 +21,15 @@
                     <a class="nav-link" href="{{ route('account') }}">Account</a>
                 </li>
                 <li class="nav-item">
+<<<<<<< HEAD
                 <form method="POST" action="{{ route('logout') }}" class="d-inline">
                     @csrf
                     <input type="hidden" name="is_admin" value="{{ session('is_admin') ? 1 : 0 }}">
                     <button type="submit" class="btn btn-danger">Logout</button>
                 </form>
+=======
+                    <a class="nav-link" href="{{ route('welcome') }}">Logout</a>
+>>>>>>> master
                 </li>
             </ul>
         </div>

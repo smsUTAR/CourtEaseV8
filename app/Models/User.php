@@ -20,9 +20,13 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+<<<<<<< HEAD
         'phone',
         'password',
         'is_admin',
+=======
+        'password',
+>>>>>>> master
     ];
 
     /**
@@ -42,8 +46,12 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+<<<<<<< HEAD
         'is_admin' => 'boolean',
     ];
 
     protected $rememberTokenName = 'remember_token';
+=======
+    ];
+>>>>>>> master
 }

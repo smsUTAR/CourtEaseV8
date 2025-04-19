@@ -13,6 +13,7 @@ As of 16 April 2025,
 
 6. Created 2 new database migrations (make sure u migrate both by specifying the paths)
 
+<<<<<<< HEAD
 
 # jm done (user login, user register, admin login, admin register, account panel)
 
@@ -36,3 +37,7 @@ As of 16 April 2025,
 ->replace in env for (mail from address)
 ->top right acc button (choose smtp and api)
 ->replace in env for mailhost(smtp server), mailport(port), mailusername(login), and mailpassword(masterpassword)
+=======
+As of 18 April 2025,
+1. Created contact.blade.php and route to contact us page.
+>>>>>>> master

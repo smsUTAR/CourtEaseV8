@@ -2,9 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookingController;
+<<<<<<< HEAD
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+=======
+>>>>>>> master
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -26,6 +29,7 @@ Route::get('/payment/{court}', [BookingController::class, 'showPayment'])
 ->name('payment')
 ->middleware('auth');
 
+<<<<<<< HEAD
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 
@@ -51,3 +55,8 @@ Route::get('/account', [AuthController::class, 'showAccount'])->name('account')-
 Route::post('/account/update-password', [AuthController::class, 'updatePassword'])->name('account.updatePassword')->middleware('auth');
 
 Route::post('/account/update-profile', [AuthController::class, 'updateProfile'])->name('account.updateProfile');
+=======
+Route::get('/contact-us', function() {
+    return view('contact');
+})->name('contact');
+>>>>>>> master
