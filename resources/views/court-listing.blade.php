@@ -51,7 +51,7 @@
     <h3>Booked court: <span id="booked-court">None</span></h3>
 
     <footer class="mt-4">
-        <a href="#">Contact Us</a>
+        <a href="contact">Contact Us</a>
     </footer>
 </div>
 
