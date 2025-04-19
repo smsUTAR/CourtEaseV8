@@ -14,7 +14,7 @@ class BookingController extends Controller
     {
         return view('payment', [
             'court' => $court,
-            'price' => $court->price, // Assuming price is stored in the Court model
+            'price' => $court->price,
         ]);
     }
 
@@ -30,7 +30,7 @@ class BookingController extends Controller
         $booking = Booking::create([
             'user_id' => Auth::id(),
             'court_id' => $request->court_id,
-            'booking_date' => now(), // Or use a date picker from the form
+            'booking_date' => now(),
             'payment_method' => $request->payment_method,
             'status' => 'confirmed',
         ]);
