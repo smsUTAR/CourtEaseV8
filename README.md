@@ -13,8 +13,8 @@ As of 16 April 2025,
 
 6. Created 2 new database migrations (make sure u migrate both by specifying the paths)
 
-==============================================================================
-jm done (user login, user register, admin login, admin register, account panel)
+
+#jm done (user login, user register, admin login, admin register, account panel)
 
 1)add controller app/http/controllers/auth
 2)add app/mail
@@ -37,4 +37,3 @@ jm done (user login, user register, admin login, admin register, account panel)
 ->replace in env for (mail from address)
 ->top right acc button (choose smtp and api)
 ->replace in env for mailhost(smtp server), mailport(port), mailusername(login), and mailpassword(masterpassword)
-==================================================================================
