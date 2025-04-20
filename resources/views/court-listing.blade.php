@@ -9,9 +9,25 @@
 </head>
 <body>
 
+@if(session('error'))
+    <div class="alert alert-danger" id="error-alert">
+        {{ session('error') }}
+    </div>
+
+    <script>
+        // Hide the error alert after 5 seconds (5000ms)
+        setTimeout(function() {
+            let alert = document.getElementById('error-alert');
+            if (alert) {
+                alert.style.display = 'none';
+            }
+        }, 5000);
+    </script>
+@endif
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="{{ route('welcome') }}">Welcome to CourtEase!</a>
+        <a class="navbar-brand" href="{{ route('court-listing') }}">Welcome to CourtEase!</a>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
@@ -61,9 +77,11 @@
                     <tr>
                         <th>Court Name</th>
                         <th>Date</th>
+                        <th>Booking Time</th>
                         <th>Hours</th>
                         <th>Total Price (RM)</th>
                         <th>Payment Method</th>
+                        <th>Action</th> 
                     </tr>
                 </thead>
                 <tbody>
@@ -71,9 +89,17 @@
                         <tr>
                             <td>{{ $booking->court->name }}</td>
                             <td>{{ $booking->booking_date }}</td>
+                            <td>{{ $booking->start_time}} - {{$booking->end_time}}</td>
                             <td>{{ $booking->hours }}</td>
                             <td>{{ number_format($booking->totalPrice, 2) }}</td>
                             <td>{{ ucfirst(str_replace('_', ' ', $booking->payment_method)) }}</td>
+                            <td>
+                                <form method="POST" action="{{ route('booking.destroy', $booking->id) }}" class="d-inline" onsubmit="return confirmDelete(event)">
+                                @csrf
+                                @method('DELETE')
+                               <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -81,26 +107,37 @@
         </div>
     @endif
 
-    <footer class="mt-4">
-    <a href="{{ route('contact') }}">Contact Us</a>
-    </footer>
-</div>
-
-@if(session('error'))
-    <div class="alert alert-danger" id="error-alert">
-        {{ session('error') }}
+    @if(session('success'))
+    <div class="alert alert-success" id="success-alert">
+        {{ session('success') }}
     </div>
 
     <script>
-        // Hide the error alert after 5 seconds (5000ms)
+        // Hide the success alert after 5 seconds
         setTimeout(function() {
-            let alert = document.getElementById('error-alert');
+            let alert = document.getElementById('success-alert');
             if (alert) {
                 alert.style.display = 'none';
             }
         }, 5000);
     </script>
 @endif
+
+    <footer class="mt-4">
+    <a href="{{ route('contact') }}">Contact Us</a>
+    </footer>
+</div>
+
+<script>
+    function confirmDelete(event) {
+        event.preventDefault(); // Prevent immediate form submit
+
+        if (confirm("Are you sure you want to delete this booking?")) {
+            alert("Booking successfully deleted. The money will be refunded soon.");
+            event.target.submit(); // Proceed with form submission
+        }
+    }
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

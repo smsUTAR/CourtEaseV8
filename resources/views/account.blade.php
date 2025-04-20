@@ -74,6 +74,22 @@
     });
 </script>
 
+@if(session('error'))
+    <div class="alert alert-danger" id="error-alert">
+        {{ session('error') }}
+    </div>
+
+    <script>
+        // Hide the error alert after 5 seconds (5000ms)
+        setTimeout(function() {
+            let alert = document.getElementById('error-alert');
+            if (alert) {
+                alert.style.display = 'none';
+            }
+        }, 5000);
+    </script>
+@endif
+
 <div class="container-fluid">
     <div class="row">
 

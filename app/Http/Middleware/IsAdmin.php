@@ -21,7 +21,12 @@ class IsAdmin
             return $next($request);
         }
 
-        // Optional: redirect to homepage or show 403
-        abort(403, 'Unauthorized access - Admins only.');
+        // If request expects JSON (like API/AJAX), abort with 403
+        if ($request->expectsJson()) {
+            abort(403, 'Unauthorized access - Admins only.');
+        }
+
+        // For normal web request, redirect back with error message
+        return redirect()->back()->with('error', 'Unauthorized access - Admins only.');
     }
 }

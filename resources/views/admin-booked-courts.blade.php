@@ -3,29 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to CourtEase</title>
+    <title>Booked Courts</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <style>
-        .center-buttons {
-            min-height: 80vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            gap: 20px;
-        }
-        .btn-blue {
-            background-color: #007bff;
-            color: white;
-            padding: 15px 40px;
-            border: none;
-            border-radius: 8px;
-            font-size: 18px;
-        }
-        .btn-blue:hover {
-            background-color: #0056b3;
-        }
-    </style>
 </head>
 <body>
 
@@ -61,16 +40,48 @@
     </div>
 </nav>
 
-<!-- ✅ Centered Buttons -->
-<div class="container center-buttons">
-    <a href="{{ url('admin-court') }}" class="btn btn-blue">Court Status</a>
-    <a href="{{ url('admin-adjust-pricing') }}" class="btn btn-blue">Adjust Pricing</a>
-    <a href="{{ url('admin-court/create') }}" class="btn btn-blue">Add New Court</a> 
-    <a href="{{ route('admin-court-manage.showManageCourt') }}" class="btn btn-blue">Manage Courts</a>
-    <a href="{{ route('admin-booked-courts') }}" class="btn btn-primary">Booked Court</a>
+<div class="container mt-5">
+    <h2>Booked Courts</h2>
+
+    <!-- Search Filter Form -->
+    <form action="{{ route('admin-booked-courts') }}" method="GET" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="search" class="form-control" placeholder="Search by court name" value="{{ old('search', $search) }}">
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+    </form>
+
+    <!-- Booked Courts Table -->
+    <table class="table table-bordered mt-4">
+        <thead>
+            <tr>
+                <th>Court Name</th>
+                <th>Booking Date</th>
+                <th>Booking Time</th>
+                <th>Booking Duration (Hours)</th>
+                <th>Total Price (RM)</th>
+                <th>Payment Method</th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse($bookedCourts as $booking)
+                <tr>
+                    <td>{{ $booking->court->name }}</td>
+                    <td>{{ $booking->booking_date }}</td>
+                    <td>{{ $booking->start_time }} - {{ $booking->end_time }}</td>
+                    <td>{{ $booking->hours }}</td>
+                    <td>{{ number_format($booking->totalPrice, 2) }}</td>
+                    <td>{{ ucfirst(str_replace('_', ' ', $booking->payment_method)) }}</td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="6" class="text-center">No booked courts found</td>
+                </tr>
+            @endforelse
+        </tbody>
+    </table>
 </div>
 
-<!-- Bootstrap Bundle JS (for toggler) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

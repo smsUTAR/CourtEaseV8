@@ -1,12 +1,54 @@
+@if(session('error'))
+    <div class="alert alert-danger" id="error-alert">
+        {{ session('error') }}
+    </div>
+
+    <script>
+        // Hide the error alert after 5 seconds (5000ms)
+        setTimeout(function() {
+            let alert = document.getElementById('error-alert');
+            if (alert) {
+                alert.style.display = 'none';
+            }
+        }, 5000);
+    </script>
+@endif
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Court Details</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="{{ route('court-listing') }}">CourtEase</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('court-listing') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('account') }}">Account</a>
+                </li>
+                <li class="nav-item">
+                    <form method="POST" action="{{ route('logout') }}" onsubmit="return confirm('Are you sure you want to logout?')" class="d-inline">
+                        @csrf
+                        <input type="hidden" name="is_admin" value="{{ session('is_admin') ? 1 : 0 }}">
+                        <button type="submit" class="btn btn-danger">Logout</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
 <div class="container">
     <div class="header">
         <h1>Booking Confirmation</h1>
-        <div class="auth-links">
-            <a href="{{ route('court-listing') }}">Home</a>
-            <a href="{{ route('account') }}">Account</a>
-            <a href="{{ route('logout') }}">Log Out</a>
-        </div>
     </div>
 
     <div class="court-details">
@@ -14,6 +56,8 @@
         <img src="{{ asset('storage/' . $court->image) }}" alt="{{ $court->name }}" width="300">
         <p>Price per hour: RM{{ number_format($court->price, 2) }}</p>
         <p>Booking Date: {{ $date }}</p>
+        <p>Booking Start Time: {{ $startTime }}</p>
+        <p>Booking End Time: {{ $endTime }}</p>
         <p>Booked Hours: {{ $hours }} hour(s)</p>
         <p><strong>Total: RM{{ number_format($total, 2) }}</strong></p>
     </div>
@@ -24,6 +68,8 @@
         <input type="hidden" name="date" value="{{ $date }}">
         <input type="hidden" name="hours" value="{{ $hours }}">
         <input type="hidden" name="total" value="{{ $total }}">
+        <input type="hidden" name="start_time" value="{{ $startTime }}">
+        <input type="hidden" name="end_time" value="{{ $endTime }}">
 
         <div class="payment-methods">
             <h3>Payment Method:</h3>
@@ -44,6 +90,8 @@
         </div>
     </form>
 </div>
+</body>
+</html>
 
 
 <style>
