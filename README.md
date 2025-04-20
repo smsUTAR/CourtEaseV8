@@ -57,3 +57,6 @@ SESSION_COOKIE=courtease_session
 1. run "php artisan db:seed" so CourtSeeder will generate data in 'courts' table.
 2. Make sure your images saved in storage\app\public and rename all the images to 'court_1.jpg', 'court_2.jpg' and so on
 
+## New Version
+1.Remigrate the booking table
+

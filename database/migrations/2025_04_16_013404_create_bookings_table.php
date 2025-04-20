@@ -18,6 +18,8 @@ class CreateBookingsTable extends Migration
             $table->foreignId('user_id')->constrained();
             $table->foreignId('court_id')->constrained();
             $table->date('booking_date');
+            $table->time('start_time'); 
+            $table->time('end_time'); 
             $table->integer('hours')->default(1);
             $table->decimal('totalPrice', 8, 2);
             $table->enum('payment_method', ['credit_debit', 'e_wallet']);
