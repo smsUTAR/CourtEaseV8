@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\Auth\AuthController;
@@ -25,6 +24,9 @@ Route::get('/', function () {
 Route::get('/payment/{court}', [BookingController::class, 'showPayment'])
 ->name('payment')
 ->middleware('auth');
+
+// Add the route for processing the payment
+Route::post('/payment/process', [BookingController::class, 'processPayment'])->name('process.payment')->middleware('auth');
 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
@@ -54,4 +56,4 @@ Route::post('/account/update-profile', [AuthController::class, 'updateProfile'])
 
 Route::get('contact', function() {
     return view('contact');
-}->name('contact);
+})->name('contact');

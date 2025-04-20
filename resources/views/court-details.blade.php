@@ -45,7 +45,8 @@
             <p><strong>Price per hour:</strong> RM4</p>
             <p><strong>Total:</strong> RM <span id="total">4</span></p>
             
-            <button class="btn btn-success">Rent</button>
+            <a href="{{ route('payment', ['court' => $id]) }}" class="btn btn-success">Rent</a>
+            
         </div>
     </div>
 
