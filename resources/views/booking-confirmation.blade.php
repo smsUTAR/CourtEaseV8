@@ -62,10 +62,10 @@
         </p>
 
         <!-- Check if user exists and display user name and phone -->
-        <p><strong>User Name:</strong> 
+        <p><strong>User Name:</strong>
             {{ $booking->user ? $booking->user->name : 'N/A' }}
         </p>
-        <p><strong>Phone Number:</strong> 
+        <p><strong>Phone Number:</strong>
             {{ $booking->user && $booking->user->phone ? $booking->user->phone : 'N/A' }}
         </p>
 
@@ -78,7 +78,7 @@
         <!-- Display court price -->
         <p><strong>Price:</strong> RM{{ number_format($booking->totalPrice, 2) }}</p>
 
-        <p><strong>Payment Method:</strong> 
+        <p><strong>Payment Method:</strong>
             {{ $booking->payment_method === 'credit_debit' ? 'Credit/Debit Card' : 'E-Wallet' }}
         </p>
     </div>
@@ -87,6 +87,20 @@
         <a href="{{ route('contact') }}" class="btn btn-contact">Contact Us</a>
     </div>
 </div>
+<script>
+    // Detect back navigation and redirect
+    if (performance.navigation.type === 2) {
+        // If user came via back/forward button
+        window.location.href = "{{ route('court-listing') }}"; // or homepage
+    }
+
+    // OR - detect back navigation using pageshow
+    window.addEventListener('pageshow', function (event) {
+        if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+            window.location.href = "{{ route('court-listing') }}";
+        }
+    });
+</script>
 </body>
 </html>
 
