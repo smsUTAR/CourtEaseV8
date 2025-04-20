@@ -51,6 +51,9 @@ SESSION_COOKIE=courtease_session
 ## Project setup
 1. need to remigrate the database, (because i have change some migration in it)
 2. To let the picture show in the view need to run php artisan storage:link.
-3. The way to let the picture store in the database, just save you picture inside CourtEaseV8\storage\app\public  and save the name to the database such as if you save picture as CourtEaseV8\storage\app\public\Court2.jpeg, the database image name should be Court2.jpeg
-4. Don't know you guys want to let admin have the ability to create new court or not?
+3. The way to let the picture store in the database, just save you picture inside CourtEaseV8\storage\app\public  and save the name to the database such as if you save picture as CourtEaseV8\storage\app\public\court_2.jpeg, the database image name should be court_2.jpeg
+
+## Set up CourtSeeder (by Ming Sheng)
+1. run "php artisan db:seed" so CourtSeeder will generate data in 'courts' table.
+2. Make sure your images saved in storage\app\public and rename all the images to 'court_1.jpg', 'court_2.jpg' and so on
 
