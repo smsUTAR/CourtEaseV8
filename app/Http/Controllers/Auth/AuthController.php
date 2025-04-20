@@ -18,8 +18,14 @@ class AuthController extends Controller
     // Show Login View
     public function showLogin(Request $request)
     {
+        // If user already logged in, redirect based on role
+        if (Auth::check()) {
+            $user = Auth::user();
+            return redirect()->route($user->is_admin ? 'admin' : 'court-listing');
+        }
+    
         $isAdmin = $request->routeIs('admin.login');
-
+    
         return view('auth.login', [
             'isAdmin' => $isAdmin,
             'registerRoute' => $isAdmin ? route('admin.register') : route('register'),

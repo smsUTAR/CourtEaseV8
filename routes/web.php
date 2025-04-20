@@ -15,17 +15,6 @@ Route::get('/account', function () {
     return view('account');
 })->name('account');
 
-Route::get('/court/{id}', [CourtController::class, 'courtDetails'])->name('court-details')->middleware('check.court.availability');
-
-Route::get('/court-listing', [CourtController::class, 'showListing'])->name('court-listing');
-
-
-Route::post('/payment', [CourtController::class, 'showPayment'])->name('payment');
-
-Route::post('/process-payment', [BookingController::class, 'processPayment'])->name('process-payment');
-Route::get('/booking-confirmation/{booking}', [BookingController::class, 'showConfirmation'])->name('booking-confirmation');
-
-
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 
@@ -47,10 +36,24 @@ Route::get('/admin/login', [AuthController::class, 'showLogin'])->name('admin.lo
 Route::get('/admin/register', [AuthController::class, 'showAdminRegister'])->name('admin.register');
 Route::post('/admin/register', [AuthController::class, 'adminRegister']);
 
+
+Route::middleware('auth')->group(function () {
 Route::get('/account', [AuthController::class, 'showAccount'])->name('account')->middleware('auth');
 Route::post('/account/update-password', [AuthController::class, 'updatePassword'])->name('account.updatePassword')->middleware('auth');
 
 Route::post('/account/update-profile', [AuthController::class, 'updateProfile'])->name('account.updateProfile');
+
+Route::get('/court/{id}', [CourtController::class, 'courtDetails'])->name('court-details')->middleware('check.court.availability');
+Route::get('/check-availability', [BookingController::class, 'checkAvailability'])->name('check.availability');
+
+Route::get('/court-listing', [CourtController::class, 'showListing'])->name('court-listing');
+Route::delete('/bookings/{booking}', [BookingController::class, 'destroy'])->name('booking.destroy');
+
+
+Route::post('/payment', [CourtController::class, 'showPayment'])->name('payment');
+
+Route::post('/process-payment', [BookingController::class, 'processPayment'])->name('process-payment');
+Route::get('/booking-confirmation/{booking}', [BookingController::class, 'showConfirmation'])->name('booking-confirmation');
 
 Route::get('contact', function() {
     return view('contact');
@@ -67,4 +70,18 @@ Route::post('/admin-adjust-pricing', [CourtController::class, 'updateAllPrices']
 
 Route::get('/admin-court', [CourtController::class,'showCourtName']);
 Route::post('/courts/update-status', [CourtController::class, 'updateStatus'])->name('courts.updateStatus');
+
+Route::get('admin-court/create', [CourtController::class, 'createNewCourt'])->name('admin.court.create');
+Route::post('admin-court', [CourtController::class, 'storeNewCourt'])->name('admin.court.store');
+
+Route::get('/admin-court-manage', [CourtController::class, 'showManageCourt'])->name('admin-court-manage.showManageCourt');
+Route::get('/admin-court-manage/{id}/edit', [CourtController::class, 'editCourt'])->name('admin-court-manage.editCourt');
+Route::put('/admin-court-manage/{id}', [CourtController::class, 'updateCourt'])->name('admin-court-manage.updateCourt');
+Route::delete('/admin-court-manage/{id}', [CourtController::class, 'destroyCourt'])->name('admin-court-manage.destroyCourt');
+Route::get('/admin-booked-courts', [CourtController::class, 'bookedCourts'])->name('admin-booked-courts');
+
+
+});
+
+
 });
