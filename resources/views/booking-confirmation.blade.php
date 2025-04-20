@@ -1,8 +1,4 @@
-@extends('layouts.app')
 
-@section('title', 'Booking Successful')
-
-@section('content')
 <div class="container">
     <div class="header">
         <h1>Booking Successful</h1>
@@ -15,10 +11,23 @@
 
     <div class="booking-details">
         <p><strong>Booking ID:</strong> {{ $booking->id }}</p>
-        <p><strong>Court Name:</strong> {{ $booking->court->name }}</p>
-        <p><strong>User Name:</strong> {{ $booking->user->name }}</p>
-        <p><strong>Phone Number:</strong> {{ $booking->user->phone ?? 'N/A' }}</p>
-        <p><strong>Price:</strong> RM{{ number_format($booking->court->price, 2) }}</p>
+
+        <!-- Check if court exists and display court name -->
+        <p><strong>Court Name:</strong> 
+            {{ $booking->court ? $booking->court->name : 'N/A' }}
+        </p>
+
+        <!-- Check if user exists and display user name and phone -->
+        <p><strong>User Name:</strong> 
+            {{ $booking->user ? $booking->user->name : 'N/A' }}
+        </p>
+        <p><strong>Phone Number:</strong> 
+            {{ $booking->user && $booking->user->phone ? $booking->user->phone : 'N/A' }}
+        </p>
+
+        <!-- Display court price -->
+        <p><strong>Price:</strong> RM{{ number_format($booking->totalPrice, 2) }}</p>
+
         <p><strong>Payment Method:</strong> 
             {{ $booking->payment_method === 'credit_debit' ? 'Credit/Debit Card' : 'E-Wallet' }}
         </p>
@@ -28,7 +37,6 @@
         <a href="{{ route('contact') }}" class="btn btn-contact">Contact Us</a>
     </div>
 </div>
-@endsection
 
 <style>
     .header {

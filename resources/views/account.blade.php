@@ -82,7 +82,11 @@
             <h4 class="text-white mb-4">CourtEase</h4>
             <ul class="nav flex-column">
                 <li class="nav-item mb-2">
-                    <a class="nav-link" href="{{ route('court-listing') }}"><i class="bi bi-house-door me-2"></i>Home</a>
+                    @if(Auth::user() && Auth::user()->is_admin)
+                        <a class="nav-link" href="{{ route('admin') }}"><i class="bi bi-house-door me-2"></i>Home</a>
+                    @else
+                        <a class="nav-link" href="{{ route('court-listing') }}"><i class="bi bi-house-door me-2"></i>Home</a>
+                    @endif
                 </li>
                 <li class="nav-item mb-2">
                     <a class="nav-link" href="{{ route('account') }}"><i class="bi bi-person-circle me-2"></i>Account</a>

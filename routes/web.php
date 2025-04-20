@@ -5,6 +5,7 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\CourtController;
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -14,17 +15,16 @@ Route::get('/account', function () {
     return view('account');
 })->name('account');
 
-Route::get('/court/{id}', function ($id) {
-    return view('court-details', ['id' => $id]);
-})->name('court-details');
+Route::get('/court/{id}', [CourtController::class, 'courtDetails'])->name('court-details')->middleware('check.court.availability');
 
-Route::get('/', function () {
-    return view('court-listing');
-})->name('court-listing');
+Route::get('/court-listing', [CourtController::class, 'showListing'])->name('court-listing');
 
-Route::get('/payment/{court}', [BookingController::class, 'showPayment'])
-->name('payment')
-->middleware('auth');
+
+Route::post('/payment', [CourtController::class, 'showPayment'])->name('payment');
+
+Route::post('/process-payment', [BookingController::class, 'processPayment'])->name('process-payment');
+Route::get('/booking-confirmation/{booking}', [BookingController::class, 'showConfirmation'])->name('booking-confirmation');
+
 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
@@ -52,6 +52,19 @@ Route::post('/account/update-password', [AuthController::class, 'updatePassword'
 
 Route::post('/account/update-profile', [AuthController::class, 'updateProfile'])->name('account.updateProfile');
 
-Route::get('contact', function () {
+Route::get('contact', function() {
     return view('contact');
 })->name('contact');
+
+Route::middleware(['auth', 'admin'])->group(function () {
+Route::get('/admin', function () {
+    return view('admin_panel');
+})->name('admin');
+
+Route::get('/admin-adjust-pricing', [CourtController::class, 'showChangePriceForm'])->name('courts.changePrice');
+Route::post('/admin-adjust-pricing', [CourtController::class, 'updateAllPrices'])->name('courts.updatePrice');
+
+
+Route::get('/admin-court', [CourtController::class,'showCourtName']);
+Route::post('/courts/update-status', [CourtController::class, 'updateStatus'])->name('courts.updateStatus');
+});

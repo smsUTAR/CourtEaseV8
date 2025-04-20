@@ -1,13 +1,9 @@
-@extends('layouts.app')
 
-@section('title', 'Booking Confirmation')
-
-@section('content')
 <div class="container">
     <div class="header">
         <h1>Booking Confirmation</h1>
         <div class="auth-links">
-            <a href="{{ route('home') }}">Home</a>
+            <a href="{{ route('court-listing') }}">Home</a>
             <a href="{{ route('account') }}">Account</a>
             <a href="{{ route('logout') }}">Log Out</a>
         </div>
@@ -16,19 +12,25 @@
     <div class="court-details">
         <h2>Court Name: {{ $court->name }}</h2>
         <img src="{{ asset('storage/' . $court->image) }}" alt="{{ $court->name }}" width="300">
-        <p>Price: RM{{ number_format($court->price, 2) }}</p>
+        <p>Price per hour: RM{{ number_format($court->price, 2) }}</p>
+        <p>Booking Date: {{ $date }}</p>
+        <p>Booked Hours: {{ $hours }} hour(s)</p>
+        <p><strong>Total: RM{{ number_format($total, 2) }}</strong></p>
     </div>
 
-    <form action="{{ route('process.payment') }}" method="POST">
+    <form action="{{ route('process-payment') }}" method="POST">
         @csrf
         <input type="hidden" name="court_id" value="{{ $court->id }}">
+        <input type="hidden" name="date" value="{{ $date }}">
+        <input type="hidden" name="hours" value="{{ $hours }}">
+        <input type="hidden" name="total" value="{{ $total }}">
 
         <div class="payment-methods">
             <h3>Payment Method:</h3>
             <label>
                 <input type="radio" name="payment_method" value="credit_debit" checked>
                 Credit/Debit Card
-            </label>
+            </label><br>
             <label>
                 <input type="radio" name="payment_method" value="e_wallet">
                 E-Wallet
@@ -36,13 +38,13 @@
         </div>
 
         <div class="footer-buttons">
-            <a href="{{ route('court.details', $court->id) }}" class="btn btn-back">Back</a>
+            <a href="{{ route('court-details', $court->id) }}" class="btn btn-back">Back</a>
             <button type="submit" class="btn btn-confirm">Confirm Payment</button>
             <a href="{{ route('contact') }}" class="btn btn-contact">Contact Us</a>
         </div>
     </form>
 </div>
-@endsection
+
 
 <style>
     .header {
@@ -71,6 +73,7 @@
         border: none;
         border-radius: 5px;
         cursor: pointer;
+        text-decoration: none;
     }
     .btn-back {
         background: #f0f0f0;

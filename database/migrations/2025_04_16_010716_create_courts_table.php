@@ -18,6 +18,7 @@ class CreateCourtsTable extends Migration
             $table->string('name');
             $table->string('image'); // Path to the court image
             $table->decimal('price', 8, 2);
+            $table->enum('status', ['available','not_available'])->default('available');
             $table->timestamps();
         });
     }
