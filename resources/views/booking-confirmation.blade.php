@@ -1,4 +1,3 @@
-
 @if(session('error'))
     <div class="alert alert-danger" id="error-alert">
         {{ session('error') }}
@@ -63,10 +62,10 @@
         </p>
 
         <!-- Check if user exists and display user name and phone -->
-        <p><strong>User Name:</strong> 
+        <p><strong>User Name:</strong>
             {{ $booking->user ? $booking->user->name : 'N/A' }}
         </p>
-        <p><strong>Phone Number:</strong> 
+        <p><strong>Phone Number:</strong>
             {{ $booking->user && $booking->user->phone ? $booking->user->phone : 'N/A' }}
         </p>
 
@@ -79,12 +78,21 @@
         <!-- Display court price -->
         <p><strong>Price:</strong> RM{{ number_format($booking->totalPrice, 2) }}</p>
 
-        <p><strong>Payment Method:</strong> 
+        <p><strong>Payment Method:</strong>
             {{ $booking->payment_method === 'credit_debit' ? 'Credit/Debit Card' : 'E-Wallet' }}
         </p>
     </div>
 
 </div>
+
+
+<script>
+    history.pushState(null, null, location.href);
+    window.onpopstate = function () {
+        history.go(1); // Prevent going back
+    };
+</script>
+
 </body>
 </html>
 

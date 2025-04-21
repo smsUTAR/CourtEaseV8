@@ -1,36 +1,29 @@
-Laravel Version 8 is in use in this project
+## Pre-requisite
+1. Type 'composer install' to install the vendor folder.
 
-As of 16 April 2025,
-1. Created a new database "courtease". (make sure u change the DB_DATABASE in .env file)
+2. Create a new .env file, then copy the code from .env.example and paste it on the newly created .env file
 
-2. Created a new BookingController file for controlling the booking process of the system.
+3. Migrate all the tables from 'database/migrations' by performing 'php artisan migrate'.
 
-3. Created 2 new routes in routes/web.php.
+4. Seed the CourtSeeder by typing 'php db:seed' in the command prompt.
 
-4. Created 2 new views (payment.blade.php and booking-confirmation.blade.php)
+5. Insert court images in 'storage/app/public' so that you are able to view the court image in the application.
 
-5. Created 2 new Models (Court and Booking)
+6. Rename your images from 'court_1' to 'court_6'. You do not need to rename the images uploaded later by yourselves.
 
-6. Created 2 new database migrations (make sure u migrate both by specifying the paths)
+7. To let the picture show in the view, you need to run 'php artisan storage:link'.
 
+## Instructions
+1. To access the normal user's login page, type in 'localhost:8000/login'; to access the admin's login page, type in 'localhost:8000/admin/login'.
+However, admins are still able to login from the normal user's login page.
 
-# jm done (user login, user register, admin login, admin register, account panel)
+2. When you want to reset your password, you have to look into 'storage/logs/laravel.log', and scroll down to find your verification code.
 
-1. add controller app/http/controllers/auth
-2. add app/mail
-3. modify user models app/models/user
-4. add validation app/traits
-5. add user data to database/migration
-6. add icon to public/icons
-7. add profile pic to public/images
-8. add view account
-9. add view auth
-10. add header recources/views/components
-11. add route
-12. update env session, adminSecretCode, eMail
+3. The secret code for registering an admin is 'adminadmin123'.
 
-## jm env setup(to add for admin register and user forgot pwd)
-ADMIN_SECRET_CODE=adminadmin123
+4. As an admin, when adding a new court, the image can be selected from any folder.
+It will ultimately make another copy of the same image in the path 'storage/app/public'.
+
 
 SESSION_DRIVER=cookie
 SESSION_LIFETIME=120
@@ -39,7 +32,7 @@ SESSION_DOMAIN=null
 SESSION_COOKIE=courtease_session
 
 
-## to send email for user forgot pwd
+## to send email for user forgot password
 1. signup acc in https://login.brevo.com/
 2. top right acc button (choose senders,dmain & dedicated ips)
 3. add sender
@@ -47,13 +40,4 @@ SESSION_COOKIE=courtease_session
 5. top right acc button (choose smtp and api)
 6. replace in env for mailhost(smtp server), mailport(port), mailusername(login), mailpassword(masterpassword), mailencrytion(tls)
 
-
-## Project setup
-1. need to remigrate the database, (because i have change some migration in it)
-2. To let the picture show in the view need to run php artisan storage:link.
-3. The way to let the picture store in the database, just save you picture inside CourtEaseV8\storage\app\public  and save the name to the database such as if you save picture as CourtEaseV8\storage\app\public\court_2.jpeg, the database image name should be court_2.jpeg
-
-## Set up CourtSeeder (by Ming Sheng)
-1. run "php artisan db:seed" so CourtSeeder will generate data in 'courts' table.
-2. Make sure your images saved in storage\app\public and rename all the images to 'court_1.jpg', 'court_2.jpg' and so on
 

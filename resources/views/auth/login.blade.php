@@ -81,7 +81,7 @@
                 <a href="{{ route('passwordForgot') }}" class="text-decoration-none">Forgot your password?</a>
             </div>
 
-            <button type="submit" class="btn btn-dark w-100 mb-3">Login</button>
+                <button type="submit" class="btn btn-dark w-100">Login</button>
 
             <div class="form-check mb-3">
                 <input type="checkbox" class="form-check-input" id="remember" name="remember">
@@ -98,6 +98,7 @@
         </form>
     </div>
 </div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

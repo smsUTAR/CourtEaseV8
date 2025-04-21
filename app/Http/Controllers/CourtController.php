@@ -84,8 +84,11 @@ public function showPayment(Request $request)
 //     return view('court-listing', compact('availableCourts', 'userBookings'));
 // }
 
-    public function showListing()
+    public function showListing(Request $request)
     {   
+
+        $request->session()->forget('payment_completed');
+        $request->session()->forget('completed_booking_id');
         // Get all courts where status is 'available'
         $availableCourts = Court::where('status', 'available')->get();
 

@@ -132,7 +132,7 @@
                                 <form method="POST" action="{{ route('booking.destroy', $booking->id) }}" class="d-inline" onsubmit="return confirmDelete(event)">
                                 @csrf
                                 @method('DELETE')
-                               <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                 </form>
                             </td>
                         </tr>

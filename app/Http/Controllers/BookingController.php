@@ -47,7 +47,7 @@ class BookingController extends Controller
         $booking = Booking::create([
             'user_id' => Auth::id(),
             'court_id' => $request->court_id,
-            'booking_date' => now(), // Or use a date picker from the form
+            'booking_date' => $request-> date, // Or use a date picker from the form
             'start_time' => $request->start_time,
             'end_time' => $request->end_time,
             'hours' => $request->hours,
@@ -56,6 +56,10 @@ class BookingController extends Controller
             'totalPrice' => $request->total,
             
         ]);
+
+        $request->session()->put('payment_completed', true);
+        $request->session()->put('completed_booking_id', $booking->id);
+
     
         // Return the booking details to the confirmation page
         return redirect()->route('booking-confirmation', ['booking' => $booking->id]);

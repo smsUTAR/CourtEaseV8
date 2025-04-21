@@ -53,7 +53,7 @@
 
     <div class="card">
         <div class="card-body">
-            <img src="{{ asset('storage/' . $court->image) }}" alt="Court Image" class="img-fluid mb-3" style="max-height: 300px; object-fit: cover;">
+        <img src="{{ asset('storage/' . $court->image) }}" alt="Court Image" class="img-fluid mb-3" style="max-height: 300px; object-fit: cover;">
             <p><strong>Status:</strong> {{ $court->status }}</p>
 
             <form id="rentForm" method="POST" action="{{ route('payment') }}">
