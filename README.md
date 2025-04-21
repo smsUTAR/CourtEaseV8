@@ -1,17 +1,19 @@
 ## Pre-requisite
 1. Type 'composer install' to install the vendor folder.
 
-2. Create a new .env file, then copy the code from .env.example and paste it on the newly created .env file
+2. Run npm install and npm run dev in the command line. 
 
-3. Migrate all the tables from 'database/migrations' by performing 'php artisan migrate'.
+3. Create a new .env file, then copy the code from .env.example and paste it on the newly created .env file
 
-4. Seed the CourtSeeder by typing 'php db:seed' in the command prompt.
+4. Migrate all the tables from 'database/migrations' by performing 'php artisan migrate'.
 
-5. Insert court images in 'storage/app/public' so that you are able to view the court image in the application.
+5. Seed the CourtSeeder by typing 'php db:seed' in the command prompt.
 
-6. Rename your images from 'court_1' to 'court_6'. You do not need to rename the images uploaded later by yourselves.
+6. Insert court images in 'storage/app/public' so that you are able to view the court image in the application.
 
-7. To let the picture show in the view, you need to run 'php artisan storage:link'.
+7. Rename your images from 'court_1' to 'court_6'. You do not need to rename the images uploaded later by yourselves.
+
+8. To let the picture show in the view, you need to run 'php artisan storage:link'.
 
 ## Instructions
 1. To access the normal user's login page, type in 'localhost:8000/login'; to access the admin's login page, type in 'localhost:8000/admin/login'.
