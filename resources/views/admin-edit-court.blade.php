@@ -9,7 +9,8 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="{{ route('admin') }}">Admin Panel</a>
+        <img src="/icons/badminton.png" alt="Badminton Icon" width="50" height="50" class="me-2" >
+        <a class="navbar-brand" href="{{ route('admin') }}">CourtEase Admin Panel</a>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">

@@ -152,7 +152,7 @@ class AuthController extends Controller
         // Auto login the user
         Auth::login($user);
 
-        return redirect('/')->with('status', 'Admin registered.');
+        return redirect('/login')->with('status', 'Admin registered.');
     }
 
     // Handle Logout

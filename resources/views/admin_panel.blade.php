@@ -6,6 +6,9 @@
     <title>Welcome to CourtEase</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <style>
+        body {
+            background-color:rgb(88, 120, 167); /* or any other color you want */
+        }
         .center-buttons {
             min-height: 80vh;
             display: flex;
@@ -15,12 +18,14 @@
             gap: 20px;
         }
         .btn-blue {
-            background-color: #007bff;
+            background-color:rgb(238, 202, 84);
             color: white;
             padding: 15px 40px;
             border: none;
-            border-radius: 8px;
-            font-size: 18px;
+            border-radius: 15px;
+            font-size: 25px;
+            width: 40%;
+            
         }
         .btn-blue:hover {
             background-color: #0056b3;
@@ -32,7 +37,8 @@
 <!-- ✅ Responsive Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="{{ route('admin') }}">Admin Panel</a>
+        <img src="/icons/badminton.png" alt="Badminton Icon" width="50" height="50" class="me-2" >
+        <a class="navbar-brand" href="{{ route('admin') }}">CourtEase Admin Panel</a>
         
         <!-- Toggler for mobile view -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -67,7 +73,7 @@
     <a href="{{ url('admin-adjust-pricing') }}" class="btn btn-blue">Adjust Pricing</a>
     <a href="{{ url('admin-court/create') }}" class="btn btn-blue">Add New Court</a> 
     <a href="{{ route('admin-court-manage.showManageCourt') }}" class="btn btn-blue">Manage Courts</a>
-    <a href="{{ route('admin-booked-courts') }}" class="btn btn-primary">Booked Court</a>
+    <a href="{{ route('admin-booked-courts') }}" class="btn btn-blue">Booked Court</a>
 </div>
 
 <!-- Bootstrap Bundle JS (for toggler) -->

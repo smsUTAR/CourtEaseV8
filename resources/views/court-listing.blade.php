@@ -27,6 +27,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
+        <img src="/icons/badminton.png" alt="Badminton Icon" width="50" height="50" class="me-2" >
         <a class="navbar-brand" href="{{ route('court-listing') }}">Welcome to CourtEase!</a>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ms-auto">
@@ -48,7 +49,41 @@
     </div>
 </nav>
 
+<div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+        <img src="https://static.wixstatic.com/media/3f4fbc_10b79366c3534805808474cd874301ab~mv2.png/v1/fill/w_1403,h_687,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/3f4fbc_10b79366c3534805808474cd874301ab~mv2.png" class="d-block w-100" style="height: 400px; object-fit: cover;" alt="Badminton Image 1">
+        </div>
+        <div class="carousel-item">
+        <img src="https://images.unsplash.com/photo-1708312604109-16c0be9326cd?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="d-block w-100" style="height: 400px; object-fit: cover;" alt="Badminton Image 2">
+        </div>
+        <div class="carousel-item">
+        <img src="https://images.unsplash.com/photo-1633313236093-beebdd1a5e80?q=80&w=2579&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="d-block w-100" style="height: 400px; object-fit: cover;" alt="Badminton Image 3">
+        </div>
+        <div class="carousel-item">
+        <img src="https://images.unsplash.com/photo-1708312604093-bafcb2fd6e69?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="d-block w-100" style="height: 400px; object-fit: cover;" alt="Badminton Image 4">
+        </div>
+        <div class="carousel-item">
+        <img src="https://images.unsplash.com/photo-1708312604124-0a5ee3381273?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="d-block w-100" style="height: 400px; object-fit: cover;" alt="Badminton Image 5">
+        </div>
+        <div class="carousel-item">
+        <img src="https://wallpaperaccess.com/full/1429518.jpg" class="d-block w-100" style="height: 400px; object-fit: cover;" alt="Badminton Image 6">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+    </div>
+
 <div class="container mt-4">
+
+    
+
     <h2>Court Listing</h2>
 
     <div class="row">
@@ -57,7 +92,7 @@
         <div class="card mb-3">
             <div class="card-body">
                 <h5 class="card-title">{{ $court->name }}</h5>
-                <a href="{{ route('court-details', ['id' => $court->id]) }}" class="btn btn-primary">View Details</a>
+                <a href="{{ route('court-details', ['id' => $court->id]) }}" class="btn btn-warning">View Details</a>
             </div>
         </div>
     </div>
@@ -122,11 +157,9 @@
         }, 5000);
     </script>
 @endif
-
-    <footer class="mt-4">
-    <a href="{{ route('contact') }}">Contact Us</a>
-    </footer>
 </div>
+
+@include('components.contactUs')
 
 <script>
     function confirmDelete(event) {

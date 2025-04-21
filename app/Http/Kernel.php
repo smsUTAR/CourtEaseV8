@@ -56,7 +56,6 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'block-payment-revisit' => \App\Http\Middleware\BlockRevisitToPayment::class,
-        'prevent-back-history' => \App\Http\Middleware\PreventBackHistory::class,
         'check.court.availability' => \App\Http\Middleware\CheckCourtAvailability::class,
         'admin' => \App\Http\Middleware\IsAdmin::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
