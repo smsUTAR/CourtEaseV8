@@ -1,4 +1,3 @@
-
 @if(session('error'))
     <div class="alert alert-danger" id="error-alert">
         {{ session('error') }}
@@ -87,6 +86,15 @@
         <a href="{{ route('contact') }}" class="btn btn-contact">Contact Us</a>
     </div>
 </div>
+
+
+<script>
+    history.pushState(null, null, location.href);
+    window.onpopstate = function () {
+        history.go(1); // Prevent going back
+    };
+</script>
+
 </body>
 </html>
 
