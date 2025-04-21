@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<!-- ✅ Responsive Navbar -->
+<!--  Responsive Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
         <a class="navbar-brand" href="{{ route('admin') }}">Admin Panel</a>

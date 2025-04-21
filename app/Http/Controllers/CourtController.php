@@ -200,10 +200,10 @@ public function showPayment(Request $request)
         // Fetch booked courts based on search query if present
         $bookedCourts = Booking::whereHas('court', function($query) use ($search) {
             if ($search) {
-               $query->where('name', 'like', '%' . $search . '%');
+                $query->where('name', 'like', '%' . $search . '%');
             }
         })->with('court') // Eager load the related court data
-          ->get();
+            ->get();
 
         return view('admin-booked-courts', compact('bookedCourts', 'search'));
     }

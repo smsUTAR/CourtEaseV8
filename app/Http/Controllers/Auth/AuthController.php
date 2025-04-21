@@ -224,7 +224,7 @@ class AuthController extends Controller
         $user = auth()->user();
 
         // Custom messages
-        $customMessages = $this->phoneMessages(); 
+        $customMessages = $this->phoneMessages();
 
         $request->validate([
             'birthdate'    => 'nullable|date',
