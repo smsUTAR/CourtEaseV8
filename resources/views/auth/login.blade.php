@@ -57,7 +57,7 @@
                     <a href="{{ route('passwordForgot') }}" class="text-decoration-none">Forgot your password?</a>
                 </div>
 
-                <button type="submit" class="btn btn-dark w-100">Login</button> 
+                <button type="submit" class="btn btn-dark w-100">Login</button>
 
                 <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="remember" name="remember">
