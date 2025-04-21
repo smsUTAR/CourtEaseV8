@@ -25,6 +25,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
+        <img src="/icons/badminton.png" alt="Badminton Icon" width="50" height="50" class="me-2" >
         <a class="navbar-brand" href="{{ route('court-listing') }}">CourtEase</a>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ms-auto">
@@ -82,10 +83,10 @@
         </div>
     </div>
 
-    <footer class="mt-4">
-        <a href="contact">Contact Us</a>
-    </footer>
+
 </div>
+
+@include('components.contactUs')
 
 <script>
     let bookedSlots = [];

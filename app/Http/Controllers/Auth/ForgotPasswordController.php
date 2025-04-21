@@ -10,7 +10,6 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use App\Mail\ResetTokenMail;
 use Illuminate\Support\Facades\Hash;
-use App\Models\PasswordReset;
 
 class ForgotPasswordController extends Controller
 {
@@ -24,6 +23,8 @@ class ForgotPasswordController extends Controller
         // Validate the email address
         $request->validate([
             'email' => 'required|email|exists:users,email',
+        ], [
+            'email.exists' => 'We couldn’t find an account with that email address.',
         ]);
 
         // Generate a short random code (letters/numbers)

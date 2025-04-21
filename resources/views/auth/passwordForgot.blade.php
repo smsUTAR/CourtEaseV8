@@ -7,14 +7,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forgot Password - CourtEase</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .brand-section {
+            background-color: #6610f2;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .form-section {
+            padding: 2rem;
+        }
+    </style>
 </head>
-<body class="bg-light">
+<body class="bg-danger">
 
 <div class="container mt-5">
-    <h2 class="text-center mb-4">Reset Your Password</h2>
+    <div class="row shadow-lg rounded-4 overflow-hidden">
+        <!-- Left side: Branding -->
+        <div class="col-md-6 brand-section">
+            <div>
+                <h1 class="display-5 fw-bold">Reset Your Password</h1>
+            </div>
+        </div>
 
-    <div class="row justify-content-center">
-        <div class="col-md-6">
+        <!-- Right side: Form -->
+        <div class="col-md-6 form-section bg-white">
+            
+
             @if (session('step') === 'verify-code')
                 <!-- STEP 2: Enter Verification Code -->
                 <form method="POST" action="{{ route('verifyResetCode') }}">
@@ -43,17 +66,23 @@
                         >
                     </div>
 
-                    <button type="submit" class="btn btn-primary w-100">Send Reset Code</button>
+                    @if ($errors->has('email'))
+                        <div class="alert alert-danger">
+                            {{ $errors->first('email') }}
+                        </div>
+                    @endif
+
+                    <button type="submit" class="btn btn-success w-100">Send Reset Code</button>
                 </form>
             @endif
-
-            <div class="text-center mt-3">
-                <a href="{{ route('login') }}">Back to Login</a>
-            </div>
 
             @if(session('status'))
                 <div class="alert alert-success mt-3">{{ session('status') }}</div>
             @endif
+
+            <div class="text-center mt-3">
+                <a href="{{ route('login') }}" class="text-primary">Back to Login</a>
+            </div>
         </div>
     </div>
 </div>
