@@ -90,20 +90,8 @@
         </div>
     </form>
 </div>
-<script>
-    // Detect back navigation and redirect
-    if (performance.navigation.type === 2) {
-        // If user came via back/forward button
-        window.location.href = "{{ route('court-listing') }}"; // or homepage
-    }
 
-    // OR - detect back navigation using pageshow
-    window.addEventListener('pageshow', function (event) {
-        if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
-            window.location.href = "{{ route('court-listing') }}";
-        }
-    });
-</script>
+
 </body>
 </html>
 

@@ -43,17 +43,21 @@ Route::post('/account/update-password', [AuthController::class, 'updatePassword'
 
 Route::post('/account/update-profile', [AuthController::class, 'updateProfile'])->name('account.updateProfile');
 
-Route::get('/court/{id}', [CourtController::class, 'courtDetails'])->name('court-details')->middleware('check.court.availability');
+Route::get('/court/{id}', [CourtController::class, 'courtDetails'])->name('court-details')->middleware('check.court.availability','block-payment-revisit');
 Route::get('/check-availability', [BookingController::class, 'checkAvailability'])->name('check.availability');
 
 Route::get('/court-listing', [CourtController::class, 'showListing'])->name('court-listing');
 Route::delete('/bookings/{booking}', [BookingController::class, 'destroy'])->name('booking.destroy');
 
 
-Route::post('/payment', [CourtController::class, 'showPayment'])->name('payment');
+Route::post('/payment', [CourtController::class, 'showPayment'])
+->name('payment')
+->middleware('block-payment-revisit');
 
-Route::post('/process-payment', [BookingController::class, 'processPayment'])->name('process-payment');
-Route::get('/booking-confirmation/{booking}', [BookingController::class, 'showConfirmation'])->name('booking-confirmation');
+Route::post('/process-payment', [BookingController::class, 'processPayment'])
+->name('process-payment');
+Route::get('/booking-confirmation/{booking}', [BookingController::class, 'showConfirmation'])
+->name('booking-confirmation');
 
 Route::get('contact', function() {
     return view('contact');
