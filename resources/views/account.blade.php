@@ -95,6 +95,7 @@
 
         <!-- Sidebar -->
         <nav class="col-md-3 col-lg-2 d-md-block sidebar px-3 py-4">
+            <img src="/icons/badminton.png" alt="Badminton Icon" width="50" height="50" class="me-2" >
             <h4 class="text-white mb-4">CourtEase</h4>
             <ul class="nav flex-column">
                 <li class="nav-item mb-2">

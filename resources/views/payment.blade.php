@@ -25,6 +25,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
+        <img src="/icons/badminton.png" alt="Badminton Icon" width="50" height="50" class="me-2" >
         <a class="navbar-brand" href="{{ route('court-listing') }}">CourtEase</a>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ms-auto">
@@ -86,7 +87,6 @@
         <div class="footer-buttons">
             <a href="{{ route('court-details', $court->id) }}" class="btn btn-back">Back</a>
             <button type="submit" class="btn btn-confirm">Confirm Payment</button>
-            <a href="{{ route('contact') }}" class="btn btn-contact">Contact Us</a>
         </div>
     </form>
 </div>
@@ -95,6 +95,7 @@
 </body>
 </html>
 
+@include('components.contactUs')
 
 <style>
     .header {

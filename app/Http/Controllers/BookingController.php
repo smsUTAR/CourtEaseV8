@@ -75,5 +75,4 @@ class BookingController extends Controller
             'booking' => $booking,
         ]);
     }
-    
 }

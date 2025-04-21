@@ -16,7 +16,8 @@
 <!-- ✅ Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="{{ route('admin') }}">Admin Panel</a>
+        <img src="/icons/badminton.png" alt="Badminton Icon" width="50" height="50" class="me-2" >
+        <a class="navbar-brand" href="{{ route('admin') }}">CourtEase Admin Panel</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -75,12 +76,42 @@
             </tbody>
         </table>
 
-        <button type="submit" class="btn btn-primary">Save</button>
-    </form>
+        <div class="d-flex justify-content-between align-items-center">
+            <!-- Save Button -->
+            <button type="submit" class="btn btn-primary" style="height: 40px;">Save</button>
 
-    <div class="mt-3">
-        {{ $courts->links() }}
-    </div>
+            <!-- Pagination -->
+            <div class="d-flex align-items-center ms-auto" style="transform: translateY(-2px);">
+                <span class="me-3">
+                    Showing {{ $courts->firstItem() }} to {{ $courts->lastItem() }} of {{ $courts->total() }} results
+                </span>
+
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        <li class="page-item {{ $courts->onFirstPage() ? 'disabled' : '' }}">
+                            <a class="page-link" href="{{ $courts->previousPageUrl() }}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+
+                        @for ($i = 1; $i <= $courts->lastPage(); $i++)
+                            <li class="page-item {{ $i == $courts->currentPage() ? 'active' : '' }}">
+                                <a class="page-link" href="{{ $courts->url($i) }}">{{ $i }}</a>
+                            </li>
+                        @endfor
+
+                        <li class="page-item {{ $courts->hasMorePages() ? '' : 'disabled' }}">
+                            <a class="page-link" href="{{ $courts->nextPageUrl() }}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </form>
+</div>
+
 </div>
 <script>
     // Hide the success message after 10 seconds (10000 milliseconds)
