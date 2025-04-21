@@ -37,7 +37,7 @@ SESSION_COOKIE=courtease_session
 2. top right acc button (choose senders,dmain & dedicated ips)
 3. add sender
 4. replace in env for (mail from address)
-5. top right acc button (choose smtp and api)
+5. top right account button (choose smtp and api)
 6. replace in env for mailhost(smtp server), mailport(port), mailusername(login), mailpassword(masterpassword), mailencrytion(tls)
 
 
